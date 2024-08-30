@@ -73,3 +73,47 @@ link here : https://formulae.brew.sh/formula/gnucobol
 - data.cob: This program acts as a simple data storage, handling reading and writing of the balance.
 
 This multi-file structure introduces modularity, making it easier to manage and extend the program. Each file has a clear responsibility, and the program flow is driven by user interaction.
+
+## Data Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant MainProgram
+    participant OperationsProgram
+    participant DataProgram
+
+    User->>MainProgram: Start Application
+    MainProgram->>User: Display Menu
+    User->>MainProgram: Enter Choice (1-4)
+    MainProgram->>MainProgram: Evaluate Choice
+
+    alt View Balance
+        MainProgram->>OperationsProgram: CALL 'OperationsProgram' USING 'TOTAL '
+        OperationsProgram->>DataProgram: CALL 'DataProgram' USING 'READ'
+        DataProgram->>OperationsProgram: Return Balance
+        OperationsProgram->>MainProgram: Return Balance
+        MainProgram->>User: Display Balance
+    end
+
+    alt Credit Account
+        MainProgram->>OperationsProgram: CALL 'OperationsProgram' USING 'CREDIT'
+        OperationsProgram->>DataProgram: CALL 'DataProgram' USING 'WRITE'
+        DataProgram->>OperationsProgram: Update Balance
+        OperationsProgram->>MainProgram: Confirm Update
+        MainProgram->>User: Confirm Credit
+    end
+
+    alt Debit Account
+        MainProgram->>OperationsProgram: CALL 'OperationsProgram' USING 'DEBIT '
+        OperationsProgram->>DataProgram: CALL 'DataProgram' USING 'WRITE'
+        DataProgram->>OperationsProgram: Update Balance
+        OperationsProgram->>MainProgram: Confirm Update
+        MainProgram->>User: Confirm Debit
+    end
+
+    alt Exit
+        MainProgram->>User: Display "Exiting the program. Goodbye!"
+        MainProgram->>MainProgram: STOP RUN
+    end
+```
