@@ -1,5 +1,5 @@
 # Cobol-Accounting-System
-This repo contains COBOL code for a simple accounting system. You can use GitHub Copilot to transform this code to any programming language. I have listed steps on how to achieve this in my blog here [google.com]
+This repo contains COBOL code for a simple accounting system. You can use GitHub Copilot to transform this code to any programming language. I have listed steps on how to transform the code to Node.js in my blog here : https://medium.com/@tajinder.singh1985/modernizing-legacy-upgrading-a-cobol-accounting-app-to-node-js-using-github-copilot-812ed95f426a
 
 ## About the program
 This COBOL program simulates an account management system. This program will involve multiple COBOL source files and perform various operations like crediting, debiting, viewing the balance, and even exiting the program. Here’s how you its structured:
