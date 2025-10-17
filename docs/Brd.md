@@ -9,7 +9,7 @@ Deliver a concise business definition of the legacy COBOL account management app
 - **Program Interactions**: `OperationsProgram` delegates reads and writes to `DataProgram` using verb-based linkage parameters (`'READ'`, `'WRITE'`). Balance inquiries surface immediately to the console; credits and debits trigger read-update-write sequences before returning control to the main loop.
 - **Inputs**: Menu choices (`PIC 9`, values 1–4) and monetary amounts (`PIC 9(6)V99`, accepting 0.01–999,999.99) are captured through console `ACCEPT` statements.
 - **Outputs**: Menu screens, balance confirmations, debit/credit acknowledgements, and error messages (invalid selection, insufficient funds, exit confirmation) are displayed on-screen in real time.
-- **File Layouts & Data Structures**: The system persists a single session balance in `STORAGE-BALANCE PIC 9(6)V99` (`data.cob:9`). Operational context is passed via fixed-length flags (`PASSED-OPERATION PIC X(6)`), while control flags such as `CONTINUE-FLAG PIC X(3)` (`main.cob:6`) govern loop continuation.
+- **File Layouts & Data Structures**: The system persists a single session balance in `STORAGE-BALANCE PIC 9(6)V99` (`data.cob:6`). Operational context is passed via fixed-length flags (`PASSED-OPERATION PIC X(6)`), while control flags such as `CONTINUE-FLAG PIC X(3)` (`main.cob:7`) and working variables like `FINAL-BALANCE PIC 9(6)V99` (`operations.cob:8`) govern loop continuation and transaction processing.
 
 ## Business Rules
 - **Menu Navigation**: The main loop remains active until the user selects exit; any other choice re-displays the menu (`main.cob:15-35`).
@@ -19,6 +19,7 @@ Deliver a concise business definition of the legacy COBOL account management app
 - **Debit Processing**: Debits require sufficient funds; attempts exceeding the current balance are denied and the balance remains unchanged.
 - **Data Persistence**: `DataProgram` honors an immediate write-back model to in-memory storage only; the starting balance initializes to 1,000.00 every execution.
 - **Precision Handling**: All monetary fields enforce two decimal places and a maximum of 999,999.99, preventing malformed currency entries.
+- **Amount Boundaries**: Transaction amounts must be positive and within valid range; the system accepts values from 0.01 to 999,999.99, with behavior for zero or negative entries determined by the implementation.
 
 ## Exceptions
 - Invalid menu selections are intercepted and resolved with a message before re-presenting options.
