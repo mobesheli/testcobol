@@ -25,6 +25,7 @@ This application is a faithful modernization of the legacy COBOL accounting syst
 - **Persistent Storage** - SQLite (dev) / PostgreSQL (prod)
 - **Input Validation** - Comprehensive VR-01 through VR-06
 - **API Documentation** - Interactive Swagger UI
+- **Executive Dashboard** - HTML/JS frontend for balance monitoring and transactions
 
 ## 🏗️ Architecture
 
@@ -93,6 +94,18 @@ uvicorn accounting.api.main:app --reload
 - API: http://localhost:8000
 - Interactive Docs: http://localhost:8000/docs
 - Alternative Docs: http://localhost:8000/redoc
+- Web Dashboard: http://localhost:8000/dashboard
+
+## 🖥️ Web Dashboard
+
+The `/dashboard` route serves a lightweight, enterprise-inspired interface that consumes the same REST endpoints. The page is fully client-side with vanilla JavaScript, so no additional build tooling is required.
+
+- View real-time account balance
+- Submit credit and debit transactions (values entered in USD are converted to cents)
+- Inspect the most recent 50 transactions with status indicators
+- Refresh balance or the entire dashboard on demand
+
+The dashboard respects light/dark mode preferences and is production-ready for reverse proxying behind the API.
 
 ## 📚 API Endpoints
 
@@ -375,4 +388,3 @@ For questions about:
 - **COBOL mapping**: See `docs/rules/`
 - **Test cases**: See `docs/TESTPLAN.md`
 - **API usage**: Visit http://localhost:8000/docs
-
