@@ -5,7 +5,7 @@ Reference: docs/Brd.md lines 14-22, docs/Frd.md traceability matrix lines 46-56
 All business rules from the Business Requirements Document.
 """
 
-from typing import Literal
+from typing import Dict, Literal, Union
 
 from accounting.business_rules.validation_rules import (
     vr_02_validate_debit_sufficiency,
@@ -51,7 +51,7 @@ def br_02_input_validation_menu(choice: int) -> tuple[bool, str]:
     return True, ""
 
 
-def br_03_balance_inquiry(balance_cents: int) -> dict[str, int | str]:
+def br_03_balance_inquiry(balance_cents: int) -> Dict[str, Union[int, str]]:
     """
     BR-03 Balance Inquiry: Retrieve and echo current balance without mutation.
     

@@ -236,7 +236,7 @@ async def debit_account(
 async def get_transaction_history(
     limit: int = 100,
     db: Session = Depends(get_db)
-) -> dict[str, list[dict]]:
+) -> dict:
     """
     Get transaction history.
     
