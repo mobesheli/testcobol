@@ -1,4 +1,3 @@
-```markdown
 # Enterprise COBOL → Python Modernization (PoC Case Study)
 
 > **A complete, production‑style path from terminal COBOL to a Python REST API and web dashboard — with 100% functional parity and full requirements traceability.**
@@ -81,7 +80,6 @@ This PoC modernizes a terminal‑based **COBOL accounting system** into a **Fast
 ## 🧱 Architecture & Design (concise)
 
 ```
-
 Web Dashboard (HTML/CSS/JS)
 │
 FastAPI (REST) ── OpenAPI
@@ -91,8 +89,7 @@ Business Rules Layer  ← pure functions (BR‑01..09, VR‑01..06)
 Repository Pattern (SQLAlchemy 2.0)
 │
 SQLite (dev)  |  PostgreSQL (prod)  ← Alembic migrations
-
-````
+```
 
 **Design decisions**
 - **Cents, not floats** — matches COBOL DECIMAL semantics precisely.  
@@ -150,7 +147,7 @@ pip install -r requirements.txt
 
 alembic upgrade head
 python run.py
-````
+```
 
 **Access**
 
@@ -285,16 +282,12 @@ pytest
 
 ## 📚 References & License
 
-**Standards:** IEEE 830 · ISO/IEC 25010 · Clean Architecture (Robert C. Martin) · DDD (Eric Evans)
-**Tech:** FastAPI · SQLAlchemy 2.0 · Pydantic v2 · pytest
+**Standards:** IEEE 830 · ISO/IEC 25010 · Clean Architecture (Robert C. Martin) · DDD (Eric Evans)  
+**Tech:** FastAPI · SQLAlchemy 2.0 · Pydantic v2 · pytest  
 **COBOL:** GnuCOBOL · ISO/IEC 1989:2014
 
-**Repo:** [https://github.com/mobesheli/testcobol](https://github.com/mobesheli/testcobol)
+**Repo:** [https://github.com/mobesheli/testcobol](https://github.com/mobesheli/testcobol)  
 **Issues/Discussions:** use GitHub Issues/Discussions
 
-**License:** MIT — see `LICENSE`
-**Version:** 1.0.0 · **Last Updated:** Oct 2025 · **Status:** **Production Ready ✅**
-
-```
-::contentReference[oaicite:0]{index=0}
-```
+**License:** MIT — see `LICENSE`  
+**Version:** 1.0.0 · **Last Updated:** Oct 2025 · **Status:** **Production Ready ✅**
